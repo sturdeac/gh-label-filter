@@ -66,6 +66,17 @@
       .side { flex: 1; }
     }
 
+    .screenshot {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .screenshot img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+    }
+
     .card {
       border: 1px solid var(--border);
       border-radius: 0.5rem;
@@ -128,6 +139,9 @@
       A simple Chrome extension that helps you compose Pull Request label searches on GitHub without memorizing search syntax.
     </p>
 
+    <div class="screenshot">
+      <img src="preview.svg" alt="Extension screenshot" />
+    </div>
     <section class="grid">
       <div class="main">
         <div class="card">

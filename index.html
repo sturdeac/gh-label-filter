@@ -2,318 +2,159 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GitHub PR Label Query Builder — Intro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GitHub PR Label Query Builder</title>
   <style>
-    :root{
-      --bg:#ffffff;
-      --surface:#f7f7f8;
-      --muted:#6b7280;
-      --text:#0f172a;
-      --accent:#2563eb;
-      --danger:#dc2626;
-      --card-border:#e6e9ee;
-      --radius:10px;
-      --max-width:720px;
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --border: #e5e7eb;
+      --danger: #dc2626;
     }
-
-    @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0b1220;
-        --surface:#071025;
-        --muted:#9aa6b2;
-        --text:#e6eef6;
-        --accent:#60a5fa;
-        --danger:#fb7185;
-        --card-border:#101827;
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --text: #f1f5f9;
+        --muted: #94a3b8;
+        --accent: #3b82f6;
+        --border: #1e293b;
       }
     }
 
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:linear-gradient(180deg,var(--bg),var(--surface));
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      box-sizing:border-box;
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 1rem;
     }
 
-    .container{
-      width:100%;
-      max-width:var(--max-width);
-      background:linear-gradient(0deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));
-      border:1px solid var(--card-border);
-      border-radius:var(--radius);
-      padding:22px;
-      box-shadow: 0 6px 22px rgba(2,6,23,0.06);
-      backdrop-filter: blur(6px);
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:16px;
+    header h1 {
+      margin: 0 0 0.25rem 0;
+      font-size: 1.5rem;
     }
 
-    header h1{
-      margin:0;
-      font-size:18px;
-      font-weight:700;
-      letter-spacing: -0.02em;
+    header p {
+      margin: 0;
+      color: var(--muted);
     }
 
-    header p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
+    .lead {
+      margin: 1rem 0;
+      color: var(--muted);
     }
 
-    .lead{
-      margin:8px 0 18px 0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.45;
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 240px;
-      gap:16px;
+    @media (min-width: 900px) {
+      .grid {
+        flex-direction: row;
+      }
+      .main { flex: 2; }
+      .side { flex: 1; }
     }
 
-    @media (max-width:760px){
-      .grid{ grid-template-columns: 1fr; }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1rem;
     }
 
-    .card{
-      background:transparent;
-      border-radius:8px;
-      padding:14px;
-      border:1px dashed var(--card-border);
+    h3 {
+      margin-top: 0;
+      font-size: 1rem;
     }
 
-    .features{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+    ul {
+      padding-left: 1.25rem;
+      margin: 0.5rem 0;
     }
 
-    .feature{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
+    ul li {
+      margin: 0.25rem 0;
     }
 
-    .dot{
-      min-width:10px;
-      height:10px;
-      border-radius:50%;
-      margin-top:6px;
-      background:var(--accent);
-      box-shadow: 0 1px 0 rgba(0,0,0,0.05) inset;
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.375rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--accent);
+      color: #fff;
     }
 
-    .feature strong{display:block;font-weight:600;margin-bottom:4px}
-    .feature span{color:var(--muted);font-size:13px;line-height:1.35}
-
-    .sidebar{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
+    .btn.secondary {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
     }
 
-    .cta{
-      display:flex;
-      gap:10px;
-      align-items:center;
+    footer {
+      margin-top: 2rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-align: center;
     }
-
-    .btn{
-      display:inline-block;
-      border:0;
-      padding:10px 12px;
-      border-radius:8px;
-      font-weight:600;
-      cursor:pointer;
-      text-decoration:none;
-      color:white;
-      background:var(--accent);
-      box-shadow:0 6px 18px rgba(37,99,235,0.12);
-      font-size:14px;
+    footer a {
+      color: inherit;
+      text-decoration: none;
     }
-
-    .btn.secondary{
-      background:transparent;
-      color:var(--accent);
-      border:1px solid rgba(37,99,235,0.12);
-      box-shadow:none;
-      font-weight:600;
-    }
-
-    .muted-note{
-      font-size:13px;
-      color:var(--muted);
-      background:transparent;
-      padding:8px;
-      border-radius:6px;
-    }
-
-    .permissions{
-      margin-top:8px;
-      font-size:13px;
-      color:var(--muted);
-      background:rgba(0,0,0,0.02);
-      padding:10px;
-      border-radius:6px;
-    }
-
-    .small{
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    footer{
-      margin-top:16px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    .donate{
-      color:var(--muted);
-      font-size:13px;
-      text-decoration:none;
-      padding:6px 8px;
-      border-radius:6px;
-      border:1px solid transparent;
-    }
-
-    .donate:hover{ background:rgba(0,0,0,0.03); }
-
-    .warning{
-      color:var(--danger);
-      font-weight:600;
-      font-size:13px;
-    }
-
-    /* small code look */
-    pre.query{
-      background:rgba(0,0,0,0.03);
-      padding:10px;
-      border-radius:6px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
-      overflow:auto;
-      font-size:13px;
-      color:var(--muted);
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <main class="container" role="main" aria-labelledby="title">
+  <div class="container">
     <header>
-      <div>
-        <h1 id="title">GitHub PR Label Query Builder</h1>
-        <p class="small">Build label queries for GitHub Pull Requests from the extension popup.</p>
-      </div>
-
-      <div class="small muted-note" aria-hidden="true">Version 1.0 • lightweight</div>
+      <h1>GitHub PR Label Query Builder</h1>
+      <p>Build and apply label filters directly from the extension popup.</p>
     </header>
 
     <p class="lead">
-      Quick, no-nonsense tool for composing GitHub PR label searches. Create OR groups, exclude labels, and apply the query directly to GitHub from the popup, no memorizing search syntax.
+      A simple Chrome extension that helps you compose Pull Request label searches on GitHub without memorizing search syntax.
     </p>
 
-    <section class="grid" aria-label="Overview and actions">
-      <div>
-        <div class="card" aria-labelledby="features-heading">
-          <h3 id="features-heading" style="margin:0 0 10px 0; font-size:15px">What it does</h3>
-
-          <div class="features" role="list">
-            <div class="feature" role="listitem">
-              <div class="dot" aria-hidden="true"></div>
-              <div>
-                <strong>Visual label groups</strong>
-                <span>Create OR groups of labels to match multiple labels at once.</span>
-              </div>
-            </div>
-
-            <div class="feature" role="listitem">
-              <div class="dot" aria-hidden="true"></div>
-              <div>
-                <strong>Exclude labels</strong>
-                <span>Toggle a group as negative to exclude all labels in that group (produces <code>-label:"..."</code>).</span>
-              </div>
-            </div>
-
-            <div class="feature" role="listitem">
-              <div class="dot" aria-hidden="true"></div>
-              <div>
-                <strong>Preserves current search</strong>
-                <span>Existing query terms are preserved and merged with selected label groups.</span>
-              </div>
-            </div>
-
-            <div class="feature" role="listitem">
-              <div class="dot" aria-hidden="true"></div>
-              <div>
-                <strong>Applies instantly</strong>
-                <span>Hit Apply in the popup and the PR search updates immediately on GitHub.</span>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top:12px">
-            <h4 style="margin:0 0 6px 0; font-size:13px">Example query</h4>
-            <pre class="query" aria-hidden="true">is:open is:pr label:"small,medium" -label:"wip"</pre>
-          </div>
-
-          <div style="margin-top:12px" class="permissions" aria-hidden="true">
-            <strong style="display:block; margin-bottom:6px;">Permissions</strong>
-            <div><strong class="small">tabs</strong> — read active tab to know which page to update.</div>
-            <div><strong class="small">scripting</strong> — run a tiny script on the GitHub page to read labels and set the search URL.</div>
-            <div><strong class="small">Host</strong> — limited to <code>https://github.com/*</code> so the extension only runs on GitHub.</div>
-          </div>
+    <section class="grid">
+      <div class="main">
+        <div class="card">
+          <h3>Features</h3>
+          <ul>
+            <li>Visual label groups with OR matching</li>
+            <li>Exclude labels with a single toggle</li>
+            <li>Preserves your existing search terms</li>
+            <li>Applies instantly to the GitHub PRs page</li>
+          </ul>
         </div>
       </div>
 
-      <aside class="sidebar" aria-labelledby="actions-heading">
-        <div>
-          <h3 id="actions-heading" style="margin:0 0 8px 0; font-size:15px">Get started</h3>
-          <div class="muted-note">Open the extension popup while on <strong>GitHub → Pull requests</strong>. Build groups and click <em>Apply</em>.</div>
-        </div>
-
+      <aside class="side">
         <div class="card">
-          <div style="margin-bottom:10px">
-            <strong style="display:block; margin-bottom:6px">Download</strong>
-            <div class="small">Install from the Chrome Web Store. This page is an overview — use the popup to run the tool.</div>
-          </div>
-
-          <div class="cta" style="margin-top:8px">
-            <a class="btn" href="#" role="button">Open popup</a>
-            <a class="btn secondary" href="#" role="button">Chrome Store</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <strong style="display:block; margin-bottom:8px">Single purpose</strong>
-          <div class="small">Build and apply GitHub Pull Request label queries from the extension popup.</div>
+          <h3>Get started</h3>
+          <p>Open the extension popup on <strong>GitHub → Pull requests</strong>, build your groups, and click <em>Apply</em>.</p>
+          <p>
+            Currently waiting for chrome store approval
+          </p>
         </div>
       </aside>
     </section>
 
     <footer>
-      <div class="small">Built for developers • minimal UI • open to feedback</div>
-      <div class="small warning">Only works on GitHub Pull Requests pages</div>
+      <p>Single purpose: Build and apply GitHub Pull Request label queries from the extension popup.<br>
     </footer>
-  </main>
+  </div>
 </body>
 </html>

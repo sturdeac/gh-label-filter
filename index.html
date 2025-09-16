@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub PR Label Filter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-github"></i> GitHub PR Label Filter</h1>
+            <p class="subtitle">Build powerful label filters for GitHub Pull Requests</p>
+            <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <main>
+            <section class="features">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-search-plus"></i>
+                        <h3>Visual Query Builder</h3>
+                        <p>Add and remove label groups with an intuitive interface</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-layer-group"></i>
+                        <h3>AND/OR Groups</h3>
+                        <p>Combine multiple labels within ANDed OR groups</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-minus-circle"></i>
+                        <h3>Negative Search</h3>
+                        <p>Exclude labels from your query with one click</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-history"></i>
+                        <h3>Preserve Queries</h3>
+                        <p>Automatically integrates existing labels in your GitHub search</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Real-Time Updates</h3>
+                        <p>Apply your query instantly to GitHub Pull Requests</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-moon"></i>
+                        <h3>Dark Mode</h3>
+                        <p>Works seamlessly in dark theme</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="demo">
+                <h2>Try the Label Filter Builder</h2>
+                <div class="query-builder">
+                    <div class="query-output">
+                        <h3>Generated Query:</h3>
+                        <div class="query-display" id="queryDisplay">
+                            <code id="queryText">is:pr is:open</code>
+                        </div>
+                        <button class="copy-btn" id="copyQuery" title="Copy query">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <div class="label-groups" id="labelGroups">
+                        <div class="group-header">
+                            <h3>Label Groups</h3>
+                            <button class="add-group-btn" id="addGroup">
+                                <i class="fas fa-plus"></i> Add Group
+                            </button>
+                        </div>
+                        <!-- Label groups will be dynamically added here -->
+                    </div>
+
+                    <div class="actions">
+                        <button class="primary-btn" id="applyQuery">
+                            <i class="fas fa-external-link-alt"></i>
+                            Apply to GitHub
+                        </button>
+                        <button class="secondary-btn" id="clearAll">
+                            <i class="fas fa-trash"></i>
+                            Clear All
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="instructions">
+                <h2>How to Use</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Add Label Groups</h4>
+                            <p>Click "Add Group" to create a new label group. Each group represents an OR condition.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Configure Labels</h4>
+                            <p>Add labels to each group. Labels within a group are ORed together, while groups are ANDed.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Apply Filter</h4>
+                            <p>Click "Apply to GitHub" to open GitHub with your custom label filter applied.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 GitHub PR Label Filter. Built for efficient PR management.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

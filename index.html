@@ -72,15 +72,6 @@
         background: var(--bg);
       }
 
-      .card a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-
-      .card a:hover {
-        text-decoration: underline;
-      }
-
       h3 {
         margin-top: 0;
         font-size: 1.125rem;
@@ -93,6 +84,29 @@
 
       ul li {
         margin: 0.25rem 0;
+      }
+      .btn {
+        display: block; /* block so margin auto works */
+        background: var(--accent);
+        color: #fff;
+        padding: 0.6rem 1.2rem;
+        border-radius: 0.375rem;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        margin: 1rem auto 0; /* centers the button */
+        width: fit-content; /* keeps it only as wide as needed */
+        transition: background 0.2s ease, transform 0.1s ease;
+      }
+
+      .btn:hover {
+        background: #1d4ed8;
+        transform: translateY(-1px);
+      }
+
+      .btn:active {
+        background: #1e40af;
+        transform: translateY(0);
       }
 
       footer {
@@ -123,6 +137,21 @@
         label searches on GitHub without memorizing search syntax.
       </p>
 
+      <div class="card">
+        <h3>Get started</h3>
+        <p>
+          Open the extension popup on <strong>GitHub → Pull requests</strong>,
+          build your groups, and click <em>Apply</em>.
+        </p>
+        <a
+          class="btn"
+          href="https://chromewebstore.google.com/detail/lfbkgdanhembiphfnggeboichpejmhie?utm_source=item-share-cb"
+          target="_blank"
+        >
+          Install from Chrome Web Store
+        </a>
+      </div>
+
       <!-- Demo Section -->
       <div class="screenshot">
         <video src="demo.mp4" autoplay muted loop playsinline controls>
@@ -144,22 +173,14 @@
         </div>
       </div>
 
-      <div class="card">
-        <h3>Get started</h3>
-        <p>
-          Open the extension popup on <strong>GitHub → Pull requests</strong>,
-          build your groups, and click <em>Apply</em>.
-        </p>
-        <p>Currently waiting for Chrome Store approval.</p>
-        <a href="https://github.com/sturdeac/gh-label-filter/issues/2">
-          Follow this issue for updates on the extension's release
-        </a>
-      </div>
-
       <footer>
         <p>
-          Single purpose: Build and apply GitHub Pull Request label queries from
-          the extension popup.
+          Support: Create an issue
+          <a
+            href="https://github.com/sturdeac/gh-label-filter/issues"
+            target="_blank"
+            >here</a
+          >
         </p>
       </footer>
     </div>

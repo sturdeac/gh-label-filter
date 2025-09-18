@@ -9,52 +9,94 @@
   </head>
   <body>
     <div class="container">
-      <header>
+      <!-- Hero Section -->
+      <header class="hero">
         <h1>GitHub PR Label Query Builder</h1>
-        <p>Build and apply label filters directly from the extension popup.</p>
-      </header>
-
-      <p class="lead">
-        A simple, 100% free forever Chrome extension to compose Pull Request
-        label searches on GitHub without memorizing search syntax.
-      </p>
-
-      <div class="card">
-        <h3>Get started</h3>
-        <p>
-          Open the extension popup on <strong>GitHub → Pull requests</strong>,
-          build your groups, and click <em>Apply</em>.
+        <p class="tagline">
+          Take full control of your pull request searches:
+          <em>build, save, and apply label queries instantly.</em>
         </p>
         <a
           class="btn"
           href="https://chromewebstore.google.com/detail/lfbkgdanhembiphfnggeboichpejmhie?utm_source=item-share-cb"
           target="_blank"
         >
-          Install from Chrome Web Store
+          Install Free from Chrome Web Store
         </a>
-      </div>
+      </header>
 
-      <!-- Demo Section -->
-      <div class="screenshot">
-        <video src="demo.mp4" autoplay muted loop playsinline controls>
-          Sorry, your browser doesn’t support embedded videos.
+      <!-- Demo -->
+      <div class="screenshot hero-demo">
+        <video src="demo.webm" autoplay muted loop playsinline controls>
+          Sorry, your browser doesn't support embedded videos.
         </video>
       </div>
 
-      <!-- Features Section -->
-      <div class="card">
-        <h3>Features</h3>
-        <ul>
-          <li>Visual label groups with OR matching</li>
-          <li>Exclude labels with a single toggle</li>
-          <li>Preserves your existing search terms</li>
-          <li>Applies instantly to the GitHub PRs page</li>
-        </ul>
-        <div class="screenshot">
-          <img src="preview.svg" alt="Extension screenshot" />
+      <!-- Features Grid -->
+      <section class="features">
+        <h2>Features that make reviewing easier</h2>
+        <div class="feature-grid">
+          <div class="card">
+            <h3>Visual Query Builder</h3>
+            <p>
+              Create label groups with a clean, simple interface, no need to
+              memorize GitHub search syntax.
+            </p>
+          </div>
+          <div class="card">
+            <h3>AND / OR Matching</h3>
+            <p>
+              Combine labels flexibly to broaden or narrow your searches for
+              exactly the PRs you want.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Exclude Labels</h3>
+            <p>
+              Hide irrelevant PRs with one click by excluding specific labels
+              from your search.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Save & Sync Queries</h3>
+            <p>
+              Keep your favorite searches handy, saved queries sync across your
+              devices so they're always ready.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Instant Updates</h3>
+            <p>
+              Apply queries instantly on GitHub PR pages without leaving or
+              refreshing.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Dark Mode Ready</h3>
+            <p>
+              Works seamlessly with light and dark themes for a natural look.
+            </p>
+          </div>
         </div>
-      </div>
+      </section>
 
+      <!-- CTA -->
+      <section class="card cta">
+        <h2>Get Started in Seconds</h2>
+        <p>
+          Open the extension on <strong>GitHub → Pull Requests</strong>, build
+          your query, and click <em>Apply</em>. Your workflow just got simpler.
+        </p>
+        <a
+          class="btn"
+          href="https://chromewebstore.google.com/detail/lfbkgdanhembiphfnggeboichpejmhie?utm_source=item-share-cb"
+          target="_blank"
+        >
+          Install Free from Chrome Web Store
+        </a>
+      </section>
+
+      <!-- Footer -->
       <footer>
         <p>
           Support: Create an issue

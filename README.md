@@ -5,4 +5,4 @@ For more info: https://sturdeac.github.io/gh-label-filter
 
 ## Download
 
-Install the Chrome extension [here](https://chromewebstore.google.com/detail/lfbkgdanhembiphfnggeboichpejmhie?utm_source=item-share-cb).
+Install the Chrome extension [here](https://chromewebstore.google.com/detail/lfbkgdanhembiphfnggeboichpejmhie?utm_source=github-readme).
